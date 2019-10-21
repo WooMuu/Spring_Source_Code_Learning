@@ -4,5 +4,5 @@
        xmlns:myname="http://www.lexueba.com/schema/user"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.lexueba.com/schema/user http://www.lexueba.com/schema/user.xsd">
-    <!--<myname:user id="testbean" userName="aaa" email="bbb"/>-->
+    <myname:user id="testbean" userName="aaa" email="bbb"/>
 </beans>

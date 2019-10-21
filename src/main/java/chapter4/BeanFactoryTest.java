@@ -8,12 +8,13 @@ import org.springframework.core.io.ClassPathResource;
  */
 public class BeanFactoryTest {
     public static void main(String[] args) {
-        XmlBeanFactory parentBeanFactory = new XmlBeanFactory(new ClassPathResource("chapter4_parent.xml"));
+//        XmlBeanFactory parentBeanFactory = new XmlBeanFactory(new ClassPathResource("chapter4_parent.xml"));
         XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource("chapter4.xml"));
-        factory.setParentBeanFactory(parentBeanFactory);
+//        factory.setParentBeanFactory(parentBeanFactory);
 
-        User testbean1 = (User) parentBeanFactory.getBean("testbean");
+//        User testbean1 = (User) parentBeanFactory.getBean("testbean");
         User testbean = (User) factory.getBean("testbean");
+        User testbean2 = (User) factory.getBean("testbean");
         System.out.println(testbean.toString());
     }
 }
