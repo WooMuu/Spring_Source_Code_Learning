@@ -42,10 +42,19 @@ public class Test {
         hello2.say();
     }
 
+    //使用自定义属性编辑器
     @org.junit.Test
     public void testPropertyEditor() {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:chapter6/testPropertyEditor.xml");
         Object userManager = context.getBean("userManager");
-        userManager.toString();
+        System.out.println(userManager.toString());
+    }
+
+    //注册spring自带的属性编辑器CustomeDateEditor
+    @org.junit.Test
+    public void testDatePropertyEditorRegsitar() {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:chapter6/DatePropertyEditorRegistarTest.xml");
+        UserManager userManager = (UserManager) context.getBean("userManager");
+        System.out.println(userManager.toString());
     }
 }
