@@ -1,6 +1,7 @@
 package chapter6;
 
 import chapter5.awareTest.Hello;
+import chapter6.bean_factory_post_processor.HelloMessage;
 import org.junit.Before;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -56,5 +57,13 @@ public class Test {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:chapter6/DatePropertyEditorRegistarTest.xml");
         UserManager userManager = (UserManager) context.getBean("userManager");
         System.out.println(userManager.toString());
+    }
+
+    //注册spring自带placeholder的beanFactoryPostProcessor,通过这个对象，可以用${placeholder} 的方式将注入的属性值抽取到一个或多个文件中统一管理
+    @org.junit.Test
+    public void testBeanFactoryPostProcessor() {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:chapter6/test_beanFactoryPostProcessor.xml");
+        HelloMessage helloMS = (HelloMessage) context.getBean("helloMS");
+        System.out.println(helloMS.getMessage());
     }
 }
