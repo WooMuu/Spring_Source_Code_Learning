@@ -5,6 +5,10 @@ import chapter6.bean_factory_post_processor.HelloMessage;
 import org.junit.Before;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.text.MessageFormat;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+
 /**
  * Created by zjb on 2019/10/22.
  */
@@ -65,5 +69,44 @@ public class Test {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:chapter6/test_beanFactoryPostProcessor.xml");
         HelloMessage helloMS = (HelloMessage) context.getBean("helloMS");
         System.out.println(helloMS.getMessage());
+    }
+
+    //注册自定义的beanfactoryProcessor
+    public void testMyBeanFactoryProcessor() {
+
+    }
+
+    //Locale类获取默认的本地Locale
+    @org.junit.Test
+    public void testLocale() {
+        System.out.println(Locale.getDefault());
+    }
+
+    @org.junit.Test
+    public void testMessageFormat() {
+        String pattern1 = " {0} ,你好！你于 {1} 在工商银行存入 {2} 元。";
+        String pattern2 = "At {1,time,short} On {1,date,long} {0} paid {2,number,currency}.";
+        //用于动态替换占位符的参数
+        Object[] params = {"John", new GregorianCalendar().getTime(), 1.0E3};
+
+        //使用默认本地化对象格式化信息
+        String msg1 = MessageFormat.format(pattern1, params);
+        System.out.println("msg1:" + msg1);
+
+        //使用制定的本地化对象格式化信息
+        MessageFormat messageFormat = new MessageFormat(pattern2, Locale.US);
+        String msg2 = messageFormat.format(pattern2, params);
+        System.out.println("msg2:" + msg2);
+    }
+
+    @org.junit.Test
+    public void testMessagesBundles() {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:chapter6/messages.xml");
+        //直接通过容器访问国际化信息
+        Object[] params = {"John ", new GregorianCalendar().getTime()};
+        String str1 = context.getMessage("test", params, Locale.US);
+        String str2 = context.getMessage("test", params, Locale.CHINA);
+        System.out.println(str1);
+        System.out.println(str2);
     }
 }
