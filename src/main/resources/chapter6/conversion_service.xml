@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="chapter6.conversion_service.String2DateConverter"/>
+            </set>
+        </property>
+    </bean>
+
+    <bean id="testConverterBean" class="chapter6.conversion_service.TestConverterBean">
+        <property name="date" value="2019-10-28 17:30:00"/>
+    </bean>
+</beans>

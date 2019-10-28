@@ -1,6 +1,7 @@
 package chapter6;
 
 import chapter5.awareTest.Hello;
+import chapter6.application_event_multicaster.TestEvent;
 import chapter6.bean_factory_post_processor.HelloMessage;
 import org.junit.Before;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -108,5 +109,21 @@ public class Test {
         String str2 = context.getMessage("test", params, Locale.CHINA);
         System.out.println(str1);
         System.out.println(str2);
+    }
+
+    //测试自定义的applicationlistener
+    @org.junit.Test
+    public void testApplicationListener() {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:chapter6/listeners.xml");
+        TestEvent event = new TestEvent("hello", "msg");
+        context.publishEvent(event);
+    }
+
+    //测试自定义的converter
+    @org.junit.Test
+    public void testConverter() {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:chapter6/conversion_service.xml");
+        Object bean = context.getBean("testConverterBean");
+        System.out.println(bean);
     }
 }
