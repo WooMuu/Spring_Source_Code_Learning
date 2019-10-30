@@ -13,17 +13,27 @@ public class AspectJTest {
 
     }
 
+    @Pointcut("execution(* *.test1(..))")
+    public void test1() {
+
+    }
+
     @Before("test()")
     public void beforeTest() {
         System.out.println("before test");
     }
 
-    @After("test()")
+    @Before("test1()")
+    public void beforeTest1() {
+        System.out.println("before test1");
+    }
+
+//    @After("test()")
     public void afterTest() {
         System.out.println("after test");
     }
 
-    @Around("test()")
+//    @Around("test()")
     public Object aroundTest(ProceedingJoinPoint p) {
         System.out.println("before1");
         Object o = null;

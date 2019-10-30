@@ -3,7 +3,15 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <aop:aspectj-autoproxy/>
+    <!--proxy-target-class 为true时强制使用CGLIB创建代理对象
+    默认不带proxy-target-class属性时，
+    如果被代理的目标对象实现了至少一个接口，则会使用JDK动态代理，所有该目标类型实现的接口都将被代理。
+    如果没有实现任何接口，则会创建一个CGLIB代理（此时需要将CGLIB二进制发行包放到classpath下）。
+
+    expose-proxy为true时，目标对象内部的自我调用也会实现切面增强。（spring的事物处理等切面编程参考这个设置）
+    例如：在a方法中调用b方法   a(){this.b()}     需要写成    a(){((被代理对象) (AopContext.currentProxy())).b();}    -->
+    <aop:aspectj-autoproxy proxy-target-class="true" expose-proxy="true"/>
+    <!--<aop:aspectj-autoproxy/>-->
 
     <bean id="testBean" class="chapter7.aop_demo.TestBean"/>
     <bean class="chapter7.aop_demo.AspectJTest"/>
