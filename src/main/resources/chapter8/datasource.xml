@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--配置dbcp连接池-->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url"
+                  value="jdbc:mysql://localhost/spring_source_code_leaning?useUnicode=true&amp;characterEncoding=UTF8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+        <!--连接池的初始大小-->
+        <property name="initialSize" value="1"/>
+        <!--连接池最大值-->
+        <property name="maxActive" value="300"/>
+        <!--最大空闲连接数-->
+        <property name="maxIdle" value="2"/>
+        <!--最小空闲连接数-->
+        <property name="minIdle" value="1"/>
+    </bean>
+
+    <!--配置业务bean-->
+    <bean id="userService" class="chapter8.service.impl.UserServiceImpl">
+        <!--向属性dataSource注入数据源-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+</beans>

@@ -97,6 +97,26 @@
         <version>4.12</version>
     </dependency>
 
+    <dependency>
+        <groupId>com.hynnet</groupId>
+        <artifactId>oracle-driver-ojdbc</artifactId>
+        <version>12.1.0.2</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>8.0.11</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
+    <dependency>
+        <groupId>commons-dbcp</groupId>
+        <artifactId>commons-dbcp</artifactId>
+        <version>1.4</version>
+    </dependency>
+
 
 </dependencies>
 </project>
