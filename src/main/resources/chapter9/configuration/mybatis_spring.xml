@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--根元素-->
+<configuration>
+    <!--为一些类定义别名-->
+    <typeAliases>
+        <typeAlias alias="Commodity" type="chapter9.pojo.Commodity"/>
+    </typeAliases>
+    <!--指定映射文件或映射类-->
+    <mappers>
+        <mapper resource="chapter9/mappers/CommodityMapper.xml"/>
+    </mappers>
+</configuration>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--根元素-->
+<configuration>
+    <!--一些全局性的配置-->
+    <settings>
+        <!--Changing from the defaults for testing-->
+        <setting name="cacheEnabled" value="false"/>
+        <setting name="useGeneratedKeys" value="true"/>
+        <setting name="defaultExecutorType" value="REUSE"/>
+    </settings>
+    <!--为一些类定义别名-->
+    <typeAliases>
+        <typeAlias alias="Commodity" type="chapter9.pojo.Commodity"/>
+    </typeAliases>
+    <!--环境-->
+    <environments default="development">
+        <!--配置mybatis的环境-->
+        <environment id="development">
+            <!--事务管理器-->
+            <transactionManager type="jdbc"/>
+            <!--数据源-->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url"
+                          value="jdbc:mysql://root:root@localhost/spring_source_code_leaning?useUnicode=true&amp;characterEncoding=UTF8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--指定映射文件或映射类-->
+    <mappers>
+        <mapper resource="chapter9/mappers/CommodityMapper.xml"/>
+    </mappers>
+</configuration>
