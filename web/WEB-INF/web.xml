@@ -26,4 +26,9 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+
+    <!--注册自定义的servletContextListener-->
+    <listener>
+        <listener-class>chapter11.myServletcontextListener.MyServletContextListener</listener-class>
+    </listener>
 </web-app>

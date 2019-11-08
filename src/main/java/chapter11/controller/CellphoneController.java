@@ -14,7 +14,8 @@ import java.util.ArrayList;
 public class CellphoneController extends AbstractController {
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+        String myData = (String) request.getServletContext().getAttribute("MyData");
+        System.out.println(myData);
         ArrayList<Cellphone> cellphoneList = new ArrayList<>();
         Cellphone huawei = new Cellphone("华为", "2000");
         Cellphone xiaomi = new Cellphone("小米", "1999");
