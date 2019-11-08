@@ -25,6 +25,9 @@ public class UserServiceImpl implements UserService {
                 "INSERT into user(name,age,sex) VALUES (?,?,?)",
                 new Object[]{user.getName(), user.getAge(), user.getSex()},
                 new int[]{Types.VARCHAR, Types.INTEGER, Types.VARCHAR});
+
+        //事物测试，加上这句代码表示数据不会保存到数据库
+        throw new RuntimeException("aaa");
     }
 
     @Override
