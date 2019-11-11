@@ -23,6 +23,17 @@
         <url-pattern>*.htm</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>myServlet</servlet-name>
+        <servlet-class>chapter11.myservlet.MyHttpServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>myServlet</servlet-name>
+        <url-pattern>/myServlet/*</url-pattern>
+    </servlet-mapping>
+
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
