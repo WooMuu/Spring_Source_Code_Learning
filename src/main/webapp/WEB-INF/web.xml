@@ -8,6 +8,10 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:/chapter11/applicationContext.xml</param-value>
     </context-param>
+    <!--<context-param>-->
+        <!--<param-name>globalInitializerClasses</param-name>-->
+        <!--<param-value>chapter11.app_initializer.MyApplicationContextInitializer</param-value>-->
+    <!--</context-param>-->
 
     <!--spring的前端控制器                  -->
     <!--当DispatcherServlet载入后，它将从一个xml文件中载入Spring的应用上下文，该xml文件的名字取决于<servlet-name>               -->
@@ -15,6 +19,10 @@
     <servlet>
         <servlet-name>Springmvc</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!--<init-param>-->
+        <!--<param-name>contextAttribute</param-name>-->
+        <!--<param-value>org.springframework.web.context.WebApplicationContext.ROOT</param-value>-->
+        <!--</init-param>-->
         <load-on-startup>1</load-on-startup>
     </servlet>
 

@@ -31,7 +31,7 @@ public class MyHttpServlet extends HttpServlet {
         System.out.println("handle myLogic");
         ServletContext servletContext = getServletContext();
         RequestDispatcher rd = null;
-        rd = servletContext.getRequestDispatcher("/WEB-INF/index.jsp");
+        rd = servletContext.getRequestDispatcher("/web/WEB-INF/index.jsp");
         try {
             rd.forward(req, resp);
         } catch (ServletException e) {

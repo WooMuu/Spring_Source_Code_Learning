@@ -12,5 +12,6 @@
 </head>
 <body>
 <h2>This is SpringMVC demo</h2>
+<h3>${handlingTime}</h3>
 </body>
 </html>

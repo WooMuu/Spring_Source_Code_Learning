@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--HandlerMapping -->
+    <bean id="simpleUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/cellphoneList.htm">cellphoneController</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="cellphoneController" class="chapter11.controller.CellphoneController"/>
+    <!--multipartResolver 文件上传解析器-->
+    <bean id="multipartResolver" class="chapter11.multipart_resolver.MyMultipartResolver">
+        <property name="maxUploadSize">
+            <value>10000</value>
+        </property>
+    </bean>
+
+    <!--注册interceptor-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--匹配的路径-->
+            <mvc:mapping path="/*"/>
+            <!--不包含的路径-->
+            <mvc:exclude-mapping path="/error"/>
+            <bean class="chapter11.interceptor.MyInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+</beans>
