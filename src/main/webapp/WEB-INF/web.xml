@@ -6,11 +6,12 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:/chapter11/applicationContext.xml</param-value>
+        <!--<param-value>classpath:/chapter11/applicationContext.xml</param-value>-->
+        <param-value>classpath:/chapter12/applicationContext-server.xml</param-value>
     </context-param>
     <!--<context-param>-->
-        <!--<param-name>globalInitializerClasses</param-name>-->
-        <!--<param-value>chapter11.app_initializer.MyApplicationContextInitializer</param-value>-->
+    <!--<param-name>globalInitializerClasses</param-name>-->
+    <!--<param-value>chapter11.app_initializer.MyApplicationContextInitializer</param-value>-->
     <!--</context-param>-->
 
     <!--spring的前端控制器                  -->
@@ -31,6 +32,15 @@
         <url-pattern>*.htm</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>remoting</servlet-name>
+        <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>remoting</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>myServlet</servlet-name>
         <servlet-class>chapter11.myservlet.MyHttpServlet</servlet-class>
