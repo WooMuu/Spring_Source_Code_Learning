@@ -1,9 +1,12 @@
 package chapter9;
 
-import chapter9.mybatisOnly.MyatisUtil;
 import chapter9.mapper.CommodityMapper;
+import chapter9.mybatisOnly.MyatisUtil;
 import chapter9.pojo.Commodity;
+import chapter9.service.CommodityService;
+import chapter9.service.UserService;
 import org.apache.ibatis.session.SqlSession;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -32,17 +35,30 @@ public class TestChaper9 {
         }
     }
 
+    private ClassPathXmlApplicationContext context;
+
+    @Before
+    public void before() {
+        context = new ClassPathXmlApplicationContext("classpath:chapter9/configuration/spring.xml");
+    }
+
     @Test
-    public void testMybatisSpring() {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:chapter9/configuration/spring.xml");
-        CommodityMapper commodityMapper = (CommodityMapper) context.getBean("commodityMapper");
-        Commodity commodity = commodityMapper.getCommodity(1);
-        System.out.println(commodity);
-//        Commodity computer = new Commodity("computer", new BigDecimal(9999));
-//        commodityMapper.insertCommodity(computer);
-        Commodity computer = commodityMapper.getCommodityByName("computer");
-        System.out.println(computer);
+    public void testAddCommodity() {
+        CommodityService service = (CommodityService) context.getBean("commodityService");
+        service.insertCommodity(new Commodity("aop", new BigDecimal(2222)));
 
+    }
 
+    @Test
+    public void testGetCommodityByName() {
+        CommodityService service = (CommodityService) context.getBean("commodityService");
+        Commodity existDisk = service.getCommodityByName("aop");
+        System.out.println(existDisk);
+    }
+
+    @Test
+    public void testGetUserByName() {
+        UserService service = (UserService) context.getBean("userService");
+        System.out.println(service.getUserByName("aop"));
     }
 }

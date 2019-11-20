@@ -3,9 +3,12 @@ package chapter8.service.impl;
 import chapter8.mapper.UserMapper;
 import chapter8.pojo.User;
 import chapter8.service.UserService;
+import chapter9.pojo.Commodity;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
+import java.math.BigDecimal;
 import java.sql.Types;
 import java.util.List;
 
@@ -26,7 +29,16 @@ public class UserServiceImpl implements UserService {
                 new Object[]{user.getName(), user.getAge(), user.getSex()},
                 new int[]{Types.VARCHAR, Types.INTEGER, Types.VARCHAR});
 
-        //事物测试，加上这句代码表示数据不会保存到数据库
+        this.throwException();
+    }
+
+    @Transactional
+    public void throwException() {
+        Commodity paper = new Commodity("4444", new BigDecimal(2));
+        int update = template.update(
+                "INSERT into commodity(name,price) VALUES (?,?)",
+                new Object[]{paper.getName(), paper.getPrice()},
+                new int[]{Types.VARCHAR, Types.INTEGER});
         throw new RuntimeException("aaa");
     }
 

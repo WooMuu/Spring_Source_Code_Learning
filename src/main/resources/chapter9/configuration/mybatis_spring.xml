@@ -7,9 +7,11 @@
     <!--为一些类定义别名-->
     <typeAliases>
         <typeAlias alias="Commodity" type="chapter9.pojo.Commodity"/>
+        <typeAlias alias="User" type="chapter8.pojo.User"/>
     </typeAliases>
     <!--指定映射文件或映射类-->
     <mappers>
         <mapper resource="chapter9/mappers/CommodityMapper.xml"/>
+        <mapper resource="chapter9/mappers/UserMapper.xml"/>
     </mappers>
 </configuration>
